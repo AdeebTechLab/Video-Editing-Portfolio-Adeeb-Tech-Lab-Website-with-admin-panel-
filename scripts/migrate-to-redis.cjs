@@ -2,8 +2,12 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 if (process.loadEnvFile) { try { process.loadEnvFile('.env.local'); } catch (e) { if (e.code !== 'ENOENT') throw e; } }
 (async () => {
-  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+  let url, token;
+  for (const prefix of ['UPSTASH_REDIS', 'KV', 'STORAGE', 'KV_KV', 'STORAGE_KV', 'KV_UPSTASH_REDIS', 'STORAGE_UPSTASH_REDIS']) {
+    url = process.env[`${prefix}_REST_URL`] || process.env[`${prefix}_REST_API_URL`];
+    token = process.env[`${prefix}_REST_TOKEN`] || process.env[`${prefix}_REST_API_TOKEN`];
+    if (url && token) break;
+  }
   if (!url || !token) throw new Error('Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN in .env.local first.');
   const auth = JSON.parse(await fs.readFile(path.join('data', 'admin.json'), 'utf8'));
   const projects = JSON.parse(await fs.readFile(path.join('data', 'projects.json'), 'utf8'));

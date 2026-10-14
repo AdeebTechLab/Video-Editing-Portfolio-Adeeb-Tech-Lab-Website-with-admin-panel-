@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import path from 'node:path';
 import { randomBytes, scryptSync, timingSafeEqual, createHmac } from 'node:crypto';
 import { type Video } from '@/data/portfolio';
+import { publishedProjects } from '@/data/published-projects';
 import { cleanCategory } from './categories';
 import { youtubeId } from './youtube';
 import { redis, redisConfigured } from './redis';
@@ -41,7 +42,7 @@ async function write(name: string, value: unknown) {
 }
 type Auth = { salt: string; hash: string; secret: string };
 export const getAuth = () => read<Auth | null>('admin.json', null);
-export const getProjects = () => read<Video[]>('projects.json', []);
+export const getProjects = () => read<Video[]>('projects.json', structuredClone(publishedProjects));
 export const saveProjects = (videos: Video[]) => write('projects.json', videos);
 export async function createAuth(password: string) {
   const salt = randomBytes(16).toString('hex');

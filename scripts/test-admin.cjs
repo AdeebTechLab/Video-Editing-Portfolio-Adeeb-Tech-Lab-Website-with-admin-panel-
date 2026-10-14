@@ -15,7 +15,7 @@ const ts = require('typescript');
     const mod = { exports: {} }; modules.set(absolute, mod);
     const code = ts.transpileModule(fs.readFileSync(absolute, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText;
     const customRequire = name => name === 'server-only' ? {} : name.startsWith('@/') ? load('src/' + name.slice(2) + '.ts') : name.startsWith('.') ? load(path.join(path.dirname(absolute), name + '.ts')) : require(name);
-    vm.runInNewContext(code, { require: customRequire, module: mod, exports: mod.exports, process: { ...process, cwd: () => temporary }, Buffer, URL, console }, { filename: absolute });
+    vm.runInNewContext(code, { require: customRequire, module: mod, exports: mod.exports, process: { ...process, cwd: () => temporary }, Buffer, structuredClone, URL, console }, { filename: absolute });
     return mod.exports;
   }
   try {
