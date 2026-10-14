@@ -11,7 +11,9 @@ npm install
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. Run `npm run typecheck` and `npm run build` for verification. After building, `npm run start` runs the included local production preview server, with byte-range support for video seeking. The production build exports the static site to `out/`; upload that directory to a static hosting provider. On Vercel, import the source directory using the Next.js preset. No secrets or backend are required.
+Open http://127.0.0.1:3000. Run `npm run typecheck` and `npm run build` for verification. After building, `npm run start` runs the Next.js production server. The production build uses `.next/`; this app is not a static export.
+
+On Vercel, import this repository with its root directory (the folder containing `package.json`), using the Next.js preset. `vercel.json` explicitly sets the framework, build command, and `.next` output directory. Do not use `out/` or `public/` as the output directory. After pushing configuration changes, create a new deployment and confirm it is Ready and assigned to the production domain.
 
 Set `NEXT_PUBLIC_SITE_URL=https://your-final-domain.example` before building to enable the canonical URL and absolute Open Graph URLs. Leave it unset during local development; the official company website is not assumed to be the deployment URL of this portfolio. A local 1200 × 630 JPEG social preview is already included at `/images/social.jpg`.
 
