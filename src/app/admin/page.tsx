@@ -6,7 +6,7 @@ import { youtubeId } from '@/lib/youtube';
 import VideoModal from '@/components/VideoModal';
 const empty = { id: '', videoUrl: '', title: '', description: '', category: '', featured: false };
 export default function AdminPage() {
-  const [state, setState] = useState<{ configured: boolean; authenticated: boolean; setupAllowed: boolean; projects: Video[] } | null>(null);
+  const [state, setState] = useState<{ configured: boolean; authenticated: boolean; setupAllowed: boolean; storageReady: boolean; projects: Video[] } | null>(null);
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState('');
   const [draft, setDraft] = useState(empty);
@@ -66,9 +66,9 @@ export default function AdminPage() {
           if (!state.configured && password !== confirmation) { setMessage('Passwords do not match.'); return; }
           if (await action({ action: state.configured ? 'login' : 'setup', password })) { setPassword(''); setConfirmation(''); }
         }}>
-          <h2>{state.configured ? 'Welcome back' : 'Set up your admin password'}</h2>
-          {!state.configured && <p className="muted">Create a password of at least 4 characters. Keep it safe for future logins.</p>}
-          {!state.configured && !state.setupAllowed ? <p>Open this admin page on the server’s localhost to set up your password before hosting.</p> : <>
+          <h2>{state.configured ? 'Welcome back' : !state.setupAllowed ? 'Restore your admin data' : 'Set up your admin password'}</h2>
+          {!state.configured && state.setupAllowed && <p className="muted">Create a password of at least 4 characters. Keep it safe for future logins.</p>}
+          {!state.configured && !state.setupAllowed ? <p>{!state.storageReady ? 'Connect Upstash Redis to this Vercel project and redeploy. Then migrate your saved admin data to restore your existing password and videos.' : 'Import your saved admin data using the migration script. Your existing password and published videos will then be available here.'}</p> : <>
             <label>Password<input type="password" required minLength={state.configured ? 1 : 4} maxLength={256} autoComplete={state.configured ? 'current-password' : 'new-password'} value={password} onChange={e => setPassword(e.target.value)} /></label>
             {!state.configured && <label>Confirm password<input type="password" required autoComplete="new-password" value={confirmation} onChange={e => setConfirmation(e.target.value)} /></label>}
             <button className="button primary" disabled={busy}>{busy ? 'Please wait…' : state.configured ? 'Sign in' : 'Create admin password'}</button>

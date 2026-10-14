@@ -4,3 +4,4 @@ out/
 *.tsbuildinfo
 .env*
 /data/
+!.env.example

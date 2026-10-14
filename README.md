@@ -68,3 +68,11 @@ Open `/admin` to manage YouTube portfolio videos. Add a link, title, description
 The admin password is stored as a salted hash in `data/admin.json`. Keep the `data` folder private and backed up. Initial password setup is available only through localhost. The folder is excluded from Git.
 
 This portfolio now requires a running Node.js server (`npm run build`, then `npm start`) and writable persistent storage for `data`. A static-only upload does not support the admin panel. Multiple server instances require shared storage and authentication.
+
+## Vercel admin storage and restoring existing videos
+
+Connect Upstash Redis from Vercel Marketplace to this project. Ensure Production has `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (the `KV_REST_API_URL` / `KV_REST_API_TOKEN` aliases are also supported). Redeploy after connecting.
+
+To restore the existing local admin password and videos, put the same Redis URL and token in a local `.env.local` file, then run `npm run migrate:redis` using Node.js 22 or newer from this project directory. This imports `data/admin.json` and `data/projects.json` together without overwriting existing Redis data. The local files remain intact. Sign in with your existing password afterward; no public password setup is enabled.
+
+Never commit `.env.local` or `data/admin.json`. On Vercel, admin and project data use Redis rather than the deployment filesystem. Without a connected database, the hosted admin explains the missing configuration. Local development without Redis continues to use the local data folder.

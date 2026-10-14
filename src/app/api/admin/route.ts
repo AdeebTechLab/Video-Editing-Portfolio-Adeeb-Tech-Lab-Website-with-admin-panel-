@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'node:crypto';
 import { activeCategories } from '@/lib/categories';
+import { redisConfigured } from '@/lib/redis';
 import { getAuth, createAuth, checkPassword, session, validSession, exclusive, getProjects, saveProjects, validateProject } from '@/lib/project-store';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -12,7 +13,7 @@ function setupAllowed(request: NextRequest) {
 export async function GET(request: NextRequest) {
   const auth = await getAuth();
   const authenticated = !!auth && validSession(auth, request.cookies.get(cookieName)?.value);
-  return NextResponse.json({ configured: !!auth, setupAllowed: setupAllowed(request), authenticated, projects: authenticated ? await getProjects() : [] }, { headers: { 'Cache-Control': 'no-store' } });
+  return NextResponse.json({ configured: !!auth, setupAllowed: setupAllowed(request), storageReady: !process.env.VERCEL || redisConfigured(), authenticated, projects: authenticated ? await getProjects() : [] }, { headers: { 'Cache-Control': 'no-store' } });
 }
 export async function POST(request: NextRequest) {
   let sameOrigin = false;

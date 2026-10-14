@@ -5,19 +5,35 @@ import { randomBytes, scryptSync, timingSafeEqual, createHmac } from 'node:crypt
 import { type Video } from '@/data/portfolio';
 import { cleanCategory } from './categories';
 import { youtubeId } from './youtube';
+import { redis, redisConfigured } from './redis';
 
 const directory = path.join(process.cwd(), 'data');
 let queue: Promise<unknown> = Promise.resolve();
 export function exclusive<T>(work: () => Promise<T>): Promise<T> {
-  const result = queue.then(work, work);
+  const locked = async () => {
+    if (!redisConfigured()) return work();
+    const token = randomBytes(16).toString('hex');
+    const acquired = await redis(['SET', 'atl:admin-lock', token, 'NX', 'PX', 60000]);
+    if (acquired !== 'OK') throw new Error('Another update is in progress. Please try again.');
+    try { return await work(); }
+    finally { await redis(['EVAL', "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end", 1, 'atl:admin-lock', token]); }
+  };
+  const result = queue.then(locked, locked);
   queue = result.catch(() => {});
   return result;
 }
 async function read<T>(name: string, fallback: T): Promise<T> {
+  if (redisConfigured()) {
+    const value = await redis(['GET', `atl:${name}`]);
+    return value === null ? fallback : JSON.parse(String(value));
+  }
+  if (process.env.VERCEL) return fallback;
   try { return JSON.parse(await readFile(path.join(directory, name), 'utf8')); }
   catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return fallback; throw error; }
 }
 async function write(name: string, value: unknown) {
+  if (redisConfigured()) { await redis(['SET', `atl:${name}`, JSON.stringify(value)]); return; }
+  if (process.env.VERCEL) throw new Error('Connect Upstash Redis in Vercel and redeploy.');
   await mkdir(directory, { recursive: true });
   const temporary = path.join(directory, `${name}.${randomBytes(8).toString('hex')}.tmp`);
   await writeFile(temporary, JSON.stringify(value, null, 2), { mode: 0o600 });
