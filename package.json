@@ -1,27 +1,29 @@
 {
-  "name": "adeeb-cinematic-portfolio",
-  "version": "1.0.0",
+  "name": "adeebtechlab-video",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Adeeb Tech Lab video editing portfolio with a browser-based admin panel (Vite + React + TypeScript).",
   "scripts": {
-    "dev": "next dev --hostname 127.0.0.1",
-    "build": "next build",
-    "start": "next start --hostname 127.0.0.1",
-    "typecheck": "tsc --noEmit", "migrate:redis": "node scripts/migrate-to-redis.cjs"
+    "dev": "vite",
+    "typecheck": "tsc -b",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
-    "next": "^15.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router": "7.18.4"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "prettier": "^3.9.10",
-    "typescript": "^5.7.0"
-  },
-  "overrides": {
-    "postcss": "8.5.23"
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "5.9.3",
+    "vite": "7.3.7"
   }
 }

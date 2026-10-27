@@ -1,32 +1,30 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
-import { Play, Pause } from "lucide-react";
-import { projects } from "@/data/portfolio";
+import { useEffect, useRef, useState } from 'react'
+import { Play, Pause } from 'lucide-react'
+import { SAMPLE_FILMS as projects } from '../config/site'
 export default function Timeline() {
-  const [playing, setPlaying] = useState(false);
-  const [position, setPosition] = useState(12);
-  const [seen, setSeen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
+  const [playing, setPlaying] = useState(false)
+  const [position, setPosition] = useState(12)
+  const [seen, setSeen] = useState(false)
+  const root = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const o = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting && !seen) {
-          setSeen(true);
-          if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
-            setPlaying(true);
+          setSeen(true)
+          if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setPlaying(true)
         }
       },
       { threshold: 0.35 },
-    );
-    if (root.current) o.observe(root.current);
-    return () => o.disconnect();
-  }, [seen]);
+    )
+    if (root.current) o.observe(root.current)
+    return () => o.disconnect()
+  }, [seen])
   useEffect(() => {
-    if (!playing) return;
-    const timer = setInterval(() => setPosition((p) => (p + 0.3) % 100), 70);
-    return () => clearInterval(timer);
-  }, [playing]);
-  const frame = projects[Math.min(4, Math.floor(position / 20))];
+    if (!playing) return
+    const timer = setInterval(() => setPosition((p) => (p + 0.3) % 100), 70)
+    return () => clearInterval(timer)
+  }, [playing])
+  const frame = projects[Math.min(4, Math.floor(position / 20))]
   return (
     <div className="editing-desk reveal" ref={root}>
       <div className="desk-top">
@@ -37,11 +35,7 @@ export default function Timeline() {
       </div>
       <div className="desk-body">
         <div className="preview-monitor">
-          <img
-            src={frame.thumbnail}
-            alt={`Timeline preview: ${frame.title}`}
-            loading="lazy"
-          />
+          <img src={frame.thumbnail} alt={`Timeline preview: ${frame.title}`} loading="lazy" />
           <div className="monitor-caption">
             {frame.title}
             <span>Original motion sample</span>
@@ -49,7 +43,7 @@ export default function Timeline() {
         </div>
         <div className="inspector">
           <p className="eyebrow">The finishing touches</p>
-          {["Sequence", "Color", "Sound", "Motion"].map((x, i) => (
+          {['Sequence', 'Color', 'Sound', 'Motion'].map((x, i) => (
             <div key={x}>
               <span>{x}</span>
               <div className="inspector-bar">
@@ -61,16 +55,10 @@ export default function Timeline() {
         </div>
       </div>
       <div className="timeline-control">
-        <button
-          className="icon-button"
-          onClick={() => setPlaying(!playing)}
-          aria-label={playing ? "Pause timeline" : "Play timeline"}
-        >
+        <button className="icon-button" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause timeline' : 'Play timeline'}>
           {playing ? <Pause size={18} /> : <Play size={18} />}
         </button>
-        <span>
-          00:00:{String(Math.floor((position / 100) * 24)).padStart(2, "0")}:00
-        </span>
+        <span>00:00:{String(Math.floor((position / 100) * 24)).padStart(2, '0')}:00</span>
         <span className="muted">MASTER SEQUENCE</span>
       </div>
       <div className="tracks">
@@ -81,30 +69,20 @@ export default function Timeline() {
           <span>00:18</span>
           <span>00:24</span>
         </div>
-        <div
-          className="playhead"
-          style={{ left: `calc(52px + (100% - 64px) * ${position / 100})` }}
-        />
+        <div className="playhead" style={{ left: `calc(52px + (100% - 64px) * ${position / 100})` }} />
         <div className="track">
           <b>V2</b>
-          <div
-            className="clip purple"
-            style={{ width: "35%", marginLeft: "18%" }}
-          >
+          <div className="clip purple" style={{ width: '35%', marginLeft: '18%' }}>
             ◇ TITLES & MOTION ◇
           </div>
-          <div className="clip purple" style={{ width: "17%" }}>
+          <div className="clip purple" style={{ width: '17%' }}>
             ◇ OUTRO
           </div>
         </div>
         <div className="track">
           <b>V1</b>
           {projects.slice(0, 4).map((p) => (
-            <div
-              key={p.id}
-              className="clip picture"
-              style={{ backgroundImage: `url(${p.thumbnail})` }}
-            >
+            <div key={p.id} className="clip picture" style={{ backgroundImage: `url(${p.thumbnail})` }}>
               {p.id}
               <i>↗</i>
             </div>
@@ -128,11 +106,11 @@ export default function Timeline() {
           max="100"
           value={position}
           onChange={(e) => {
-            setPlaying(false);
-            setPosition(+e.target.value);
+            setPlaying(false)
+            setPosition(+e.target.value)
           }}
         />
       </label>
     </div>
-  );
+  )
 }

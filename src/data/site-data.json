@@ -1,0 +1,575 @@
+{
+  "app": "adeebtechlab-video",
+  "version": 1,
+  "updatedAt": 1793016000000,
+  "settings": {
+    "companyName": "Adeeb Tech Lab",
+    "founderName": "Salman Adeeb",
+    "founderRole": "Founder / CEO",
+    "founderImage": "/images/founder.jpg",
+    "logo": "/images/logo.png",
+    "email": "info.AdeebTechLab@gmail.com",
+    "whatsappNumber": "923092333121",
+    "whatsappMessage": "Hello Adeeb Tech Lab, I would like to discuss a video editing project.",
+    "location": "Bahawalpur, Pakistan",
+    "mapUrl": "https://maps.app.goo.gl/6anQUP6B2LABJE8j8",
+    "website": "https://adeebtechlab.com/",
+    "socials": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/adeebtechlab/"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/company/AdeebTechnologyLab/"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com/AdeebTechnologyLab"
+      },
+      {
+        "name": "Facebook",
+        "url": "https://web.facebook.com/AdeebTechnologyLab"
+      },
+      {
+        "name": "TikTok",
+        "url": "https://www.tiktok.com/@adeebtechnologylab"
+      }
+    ],
+    "skills": [
+      "Video cutting",
+      "Storytelling",
+      "Transitions",
+      "Typography animation",
+      "Green screen editing",
+      "Visual effects",
+      "Audio editing",
+      "Color correction"
+    ],
+    "process": [
+      {
+        "title": "Discover",
+        "text": "Understand your creative vision, audience and project goals."
+      },
+      {
+        "title": "Plan",
+        "text": "Define the visual direction, references and editing approach."
+      },
+      {
+        "title": "Edit",
+        "text": "Shape the story through sequencing, timing, transitions and sound."
+      },
+      {
+        "title": "Enhance",
+        "text": "Refine the graphics, effects, color and finishing details."
+      },
+      {
+        "title": "Deliver",
+        "text": "Prepare the final video for your intended platform."
+      }
+    ],
+    "values": [
+      "Creative thinking",
+      "Attention to detail",
+      "Visual storytelling",
+      "Platform-aware editing",
+      "Professional presentation",
+      "Collaborative workflow"
+    ],
+    "faqs": [
+      {
+        "question": "What types of videos can you edit?",
+        "answer": "Video editing is a confirmed company service. Share your format, footage and goals so we can discuss the right approach for your project."
+      },
+      {
+        "question": "Can you edit YouTube Shorts and Instagram Reels?",
+        "answer": "Tell us your platform, target length and reference style. We will discuss the scope and suitability of a vertical edit with you."
+      },
+      {
+        "question": "How can I submit my footage?",
+        "answer": "Start with an inquiry. We can then agree on a suitable file-transfer method. Please do not send private footage through this website form."
+      },
+      {
+        "question": "Can I request revisions?",
+        "answer": "Discuss feedback rounds, deliverables and revision expectations when agreeing the project scope. No fixed revision policy is assumed here."
+      },
+      {
+        "question": "How long does a project take?",
+        "answer": "Timing depends on footage volume, complexity and availability. A schedule can be agreed after reviewing your brief."
+      },
+      {
+        "question": "How do I request a quotation?",
+        "answer": "Use the project inquiry below or contact us by email or WhatsApp. Include your format, intended length, deadline and available footage."
+      }
+    ],
+    "comparison": {
+      "before": "/images/comparison.jpg",
+      "after": "/images/comparison.jpg",
+      "label": "Original graphic color study · sample comparison"
+    }
+  },
+  "categories": [
+    {
+      "id": "cat-arabic",
+      "name": "Arabic",
+      "order": 1
+    },
+    {
+      "id": "cat-subtitle",
+      "name": "Subtitle",
+      "order": 2
+    },
+    {
+      "id": "cat-unboxing-and-review",
+      "name": "Unboxing & Review",
+      "order": 3
+    },
+    {
+      "id": "cat-podcast",
+      "name": "Podcast",
+      "order": 4
+    },
+    {
+      "id": "cat-ai",
+      "name": "Ai",
+      "order": 5
+    },
+    {
+      "id": "cat-screen-recording",
+      "name": "Screen Recording",
+      "order": 6
+    },
+    {
+      "id": "cat-live-streaming",
+      "name": "Live Streaming",
+      "order": 7
+    }
+  ],
+  "videos": [
+    {
+      "id": "a2e44eed-a8c8-4a3e-b427-cedf3f511ea2",
+      "title": "Surah Al Jumuah Ki Tilawat | Jumma Ke Din Sunein, Rizq Mein Barkat Ki Dua Aur Dil Ka Roohani Sukoon!",
+      "description": "this is a Arabic video",
+      "categoryId": "cat-arabic",
+      "videoUrl": "https://www.youtube.com/watch?v=r10k9t1K-w0",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/r10k9t1K-w0/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 1,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "f8688c79-f124-4852-97f2-ca05eb461945",
+      "title": "Subh Subh Rizq Ka Behtareen Zikr | Ayat e Rizq, Ayatul Kursi, Surah Al Baqarah, Surah Al Fatiha,",
+      "description": "this is a arabic videos",
+      "categoryId": "cat-arabic",
+      "videoUrl": "https://www.youtube.com/watch?v=bkRo4CrjhHc",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/bkRo4CrjhHc/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 2,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "b46627a6-8486-4035-aca4-5c7a1567130c",
+      "title": "Imam Hasan aur Imam Hussain Par Durood | 5 Minute Peaceful Recitation for Dua and Spiritual Comfort",
+      "description": "this is a Arabic videos",
+      "categoryId": "cat-arabic",
+      "videoUrl": "https://www.youtube.com/watch?v=cf-RhtZe-Xk",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/cf-RhtZe-Xk/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 3,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "be1b2181-0035-4d0b-af52-e02b06c1f805",
+      "title": "Surah Al Baqarah Ka Akhri Ruku | Surah Al Baqarah Last Ruku |Surah Al Baqarah Ki Akhri 3 Ayat e jadu",
+      "description": "this is a Arabic videos",
+      "categoryId": "cat-arabic",
+      "videoUrl": "https://www.youtube.com/watch?v=78ySaAa35RI",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/78ySaAa35RI/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 4,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "011f5648-87d3-4a64-b119-88684f7c3649",
+      "title": "Subah Rizq Ka Behtareen Zikr | Best Morning Azkar for Rizq, Barkat, Dua aur Halal Earnings Today Now",
+      "description": "this is a Arabic video",
+      "categoryId": "cat-arabic",
+      "videoUrl": "https://www.youtube.com/watch?v=GuHzyXJZpz0",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/GuHzyXJZpz0/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 5,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "7a5e27f1-b7f4-4e28-b8b0-40edbd55e897",
+      "title": "Surah Jummah 1 Bar Zaroor Sunein | Poora Hafta Rizq Mein Barkat Aur Har Dua Qabool Hogi Aaj Zaroor!!",
+      "description": "this is a arabic videos",
+      "categoryId": "cat-arabic",
+      "videoUrl": "https://www.youtube.com/watch?v=xUtRkfJ-n2Y",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/xUtRkfJ-n2Y/hqdefault.jpg",
+      "duration": "",
+      "featured": true,
+      "published": true,
+      "isDemo": false,
+      "order": 6,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "00bc5ea9-9952-42d1-8743-a9c91a72caa4",
+      "title": "How to Create Proper YouTube Channel || Youtube Channel Ksa Bnayan Or Videos Post Ksa Krain",
+      "description": "this is a subtitle video",
+      "categoryId": "cat-subtitle",
+      "videoUrl": "https://www.youtube.com/watch?v=yE3K3x77PpE",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/yE3K3x77PpE/hqdefault.jpg",
+      "duration": "",
+      "featured": true,
+      "published": true,
+      "isDemo": false,
+      "order": 7,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "f85a7f31-d8bb-4659-8e6e-c3603504013e",
+      "title": "update 6 How To Earn Money From Facebook Videos|| Faceboook Videos sa pasa kasa kamain",
+      "description": "this is a subtitle video",
+      "categoryId": "cat-subtitle",
+      "videoUrl": "https://www.youtube.com/watch?v=dRk5oHgpXRA",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/dRk5oHgpXRA/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 8,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "d66777c7-e38d-471f-bf37-d75e57a1e760",
+      "title": "Update 1 About Facebook Jobs Tab || Facebook Walon Na Jobs Ka Tab Delete Kr Dia 😓😥😟",
+      "description": "this is a subtitle video",
+      "categoryId": "cat-subtitle",
+      "videoUrl": "https://www.youtube.com/watch?v=DjLc7WhULKo",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/DjLc7WhULKo/hqdefault.jpg",
+      "duration": "",
+      "featured": true,
+      "published": true,
+      "isDemo": false,
+      "order": 9,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "cc337ea1-62cf-4187-981d-0d3aa3ba3204",
+      "title": "3 ChatGPT Commands Every Student Must Know! 🤯📚. #explorepage #shorts #viral #ai #students",
+      "description": "thi is ai video",
+      "categoryId": "cat-ai",
+      "videoUrl": "https://www.youtube.com/watch?v=eYLtXujru9o",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/eYLtXujru9o/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 10,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "665d96bb-8b85-4487-a302-24de7c9435aa",
+      "title": "Create Professional Designs & Animations with AI #explorepage #shorts #aidesign #ai #viral",
+      "description": "this is a ai video",
+      "categoryId": "cat-ai",
+      "videoUrl": "https://www.youtube.com/watch?v=PVAik1lHK7k",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/PVAik1lHK7k/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 11,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "73c779b3-9c44-427d-ae98-46bc3a292880",
+      "title": "3 Websites Every Student Must Know 🎓🔥#shorts #explorepage #students #fyp #study",
+      "description": "thi is a ai video",
+      "categoryId": "cat-ai",
+      "videoUrl": "https://www.youtube.com/watch?v=g_DAz4CQkqQ",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/g_DAz4CQkqQ/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 12,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "39b4b77f-6133-4c5f-86f5-c1c0358d5515",
+      "title": "Analyze Any Website’s Traffic with Similarweb 📊Want to know where a website gets its traffic from?",
+      "description": "this is a Ai video",
+      "categoryId": "cat-ai",
+      "videoUrl": "https://www.youtube.com/watch?v=wekqRAbwMbg",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/wekqRAbwMbg/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 13,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "6f36bfc1-98a3-4995-b1a6-a753763cc702",
+      "title": "AMD Graphic Card Unboxing 🔥 | Daraz Online Shopping | Budget GPU for Gaming & Editing 2026",
+      "description": "this is a Unboxing & Review videos",
+      "categoryId": "cat-unboxing-and-review",
+      "videoUrl": "https://www.youtube.com/watch?v=5KHpLvik8qU",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/5KHpLvik8qU/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 14,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "3f25de46-2dff-4aad-acc5-ac08de255bf5",
+      "title": "HP Z400 Workstation Unboxing in 2026 | Budget Editing PC | 6 RAM Slots | 600W PSU",
+      "description": "this is a Unboxing & Review videos",
+      "categoryId": "cat-unboxing-and-review",
+      "videoUrl": "https://www.youtube.com/watch?v=pZTSsuKhHuU",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/pZTSsuKhHuU/hqdefault.jpg",
+      "duration": "",
+      "featured": true,
+      "published": true,
+      "isDemo": false,
+      "order": 15,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "902c707d-a3a7-4871-b3c2-7a05c3485581",
+      "title": "How To Connect Hostinger Domain With Versal Project | Complete Guide 2026",
+      "description": "thi is a screen recording  video",
+      "categoryId": "cat-screen-recording",
+      "videoUrl": "https://www.youtube.com/watch?v=2Dh-F4s0SJI",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/2Dh-F4s0SJI/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 16,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "805e8e04-c0bf-442a-b8ce-de25753ea189",
+      "title": "HR 3 Days Online Cold Calling Training | Lead Generation & Client Hunting Skills | Adeeb Technology",
+      "description": "this is a Live Streaming video",
+      "categoryId": "cat-live-streaming",
+      "videoUrl": "https://www.youtube.com/watch?v=0__4BNWSSYk",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/0__4BNWSSYk/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 17,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "4e22d1e6-a74b-4916-a822-c8290b9571ca",
+      "title": "EP15A - Salam-e-Jahan - Matrimony in USA",
+      "description": "pordcast video",
+      "categoryId": "cat-podcast",
+      "videoUrl": "https://www.youtube.com/watch?v=9YDoeY_8ZHI",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/9YDoeY_8ZHI/hqdefault.jpg",
+      "duration": "",
+      "featured": false,
+      "published": true,
+      "isDemo": false,
+      "order": 18,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    },
+    {
+      "id": "26e7c262-b247-4cfc-9c2d-0196a0aabed0",
+      "title": "EP7 (Part D) Salam-e-Jahan: Gen. Pervez Musharraf",
+      "description": "this is a podcast video",
+      "categoryId": "cat-podcast",
+      "videoUrl": "https://www.youtube.com/watch?v=1tL0l-cwoCA",
+      "videoType": "youtube",
+      "thumbnail": "https://i.ytimg.com/vi/1tL0l-cwoCA/hqdefault.jpg",
+      "duration": "",
+      "featured": true,
+      "published": true,
+      "isDemo": false,
+      "order": 19,
+      "createdAt": 1793016000000,
+      "updatedAt": 1793016000000
+    }
+  ],
+  "services": [
+    {
+      "id": "svc-video-editing",
+      "name": "Video editing",
+      "description": "Purposeful cuts, considered pacing and a clear visual story.",
+      "label": "Confirmed offering",
+      "icon": "film",
+      "image": "/images/videoediting.png",
+      "imageAlt": "Video editing workspace",
+      "order": 1
+    },
+    {
+      "id": "svc-youtube-and-long-form",
+      "name": "YouTube & long-form",
+      "description": "A proposed format: structure, clarity and engaging visual rhythm.",
+      "label": "Discuss your brief",
+      "icon": "monitor-play",
+      "image": "/images/youtoube.png",
+      "imageAlt": "YouTube and long-form video editing",
+      "order": 2
+    },
+    {
+      "id": "svc-reels-and-shorts",
+      "name": "Reels & shorts",
+      "description": "A proposed format: focused storytelling for vertical screens.",
+      "label": "Discuss your brief",
+      "icon": "smartphone",
+      "image": "/images/shortreal.png",
+      "imageAlt": "Reels and Shorts video editing",
+      "order": 3
+    },
+    {
+      "id": "svc-motion-graphics",
+      "name": "Motion graphics",
+      "description": "Explore animated titles, graphic sequences and visual accents.",
+      "label": "Discuss your brief",
+      "icon": "layers",
+      "image": "/images/motiongrafic.png",
+      "imageAlt": "Motion graphics editing",
+      "order": 4
+    },
+    {
+      "id": "svc-color-and-finishing",
+      "name": "Color & finishing",
+      "description": "Explore correction, cohesive color and a polished final presentation.",
+      "label": "Discuss your brief",
+      "icon": "palette",
+      "image": "/images/colore.png",
+      "imageAlt": "Color grading and finishing",
+      "order": 5
+    },
+    {
+      "id": "svc-sound-and-synchronization",
+      "name": "Sound & synchronization",
+      "description": "Explore balanced audio, music timing and seamless synchronization.",
+      "label": "Discuss your brief",
+      "icon": "audio-lines",
+      "image": "/images/sound.png",
+      "imageAlt": "Sound editing and synchronization",
+      "order": 6
+    },
+    {
+      "id": "svc-promotional-and-cinematic",
+      "name": "Promotional & cinematic",
+      "description": "Explore campaign films, trailers and atmospheric storytelling.",
+      "label": "Discuss your brief",
+      "icon": "clapperboard",
+      "image": "/images/sanimatic.png",
+      "imageAlt": "Promotional and cinematic video editing",
+      "order": 7
+    },
+    {
+      "id": "svc-podcast-editing",
+      "name": "Podcast editing",
+      "description": "Explore multi-camera pacing and a clear listening experience.",
+      "label": "Discuss your brief",
+      "icon": "mic",
+      "image": "/images/pordcast.png",
+      "imageAlt": "Podcast editing",
+      "order": 8
+    },
+    {
+      "id": "svc-transitions-and-effects",
+      "name": "Transitions & effects",
+      "description": "Explore motivated transitions, compositing and green screen work.",
+      "label": "Discuss your brief",
+      "icon": "sparkles",
+      "image": "/images/transitions.png",
+      "imageAlt": "Video transitions and effects",
+      "order": 9
+    }
+  ],
+  "tools": [
+    {
+      "id": "tool-premiere-pro",
+      "name": "Premiere Pro",
+      "logo": "/images/tools/premiere-pro.jpg",
+      "color": "#9b5cff",
+      "description": "Sequencing, cutting and editorial workflows.",
+      "order": 1,
+      "showOnSite": true
+    },
+    {
+      "id": "tool-davinci-resolve",
+      "name": "DaVinci Resolve",
+      "logo": "/images/tools/davinci-resolve.jpg",
+      "color": "#59c9ff",
+      "description": "Video editing, cinematic color grading and audio finishing.",
+      "order": 2,
+      "showOnSite": true
+    },
+    {
+      "id": "tool-filmora",
+      "name": "Filmora",
+      "logo": "/images/tools/filmora.jpg",
+      "color": "#00d9c3",
+      "description": "Creative video assembly and finishing.",
+      "order": 3,
+      "showOnSite": true
+    }
+  ]
+}

@@ -1,7 +1,10 @@
-node_modules/
-.next/
-out/
-*.tsbuildinfo
-.env*
-/data/
+node_modules
+dist
+*.local
+.env
+.env.*
 !.env.example
+.firebase
+firebase-debug.log
+.DS_Store
+.vercel

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-area="site">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adeeb Tech Lab | Professional Video Editing &amp; Creative Production</title>
+    <meta name="description" content="Explore professional video editing, motion graphics, cinematic storytelling, and creative video production services by Adeeb Tech Lab." />
+
+    <!-- Link preview (WhatsApp, LinkedIn, Facebook, X). -->
+    <meta property="og:title" content="Adeeb Tech Lab — Creativity in motion" />
+    <meta property="og:description" content="Video Editing &amp; Creative Production" />
+    <meta property="og:image" content="/images/social.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Adeeb Tech Lab — Video Editing &amp; Creative Production" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Adeeb Tech Lab — Creativity in motion" />
+    <meta name="twitter:description" content="Video Editing &amp; Creative Production" />
+    <meta name="twitter:image" content="/images/social.jpg" />
+
+    <link rel="icon" href="/images/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!--
+      Before the page paints: mark whether this is the public portfolio or the admin panel (each has its own
+      styles, see src/index.css), and apply the admin panel's saved light/dark choice so there is no flash.
+    -->
+    <script>
+      try {
+        document.documentElement.setAttribute('data-area', /^\/admin(\/|$)/.test(location.pathname) ? 'admin' : 'site');
+        var t = localStorage.getItem('atl-video-theme');
+        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+      } catch (e) {}
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Adeeb Tech Lab",
+        "url": "https://adeebtechlab.com/",
+        "email": "info.AdeebTechLab@gmail.com",
+        "telephone": "+923092333121",
+        "address": { "@type": "PostalAddress", "addressLocality": "Bahawalpur", "addressCountry": "PK" }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Please enable JavaScript to view the Adeeb Tech Lab video portfolio.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

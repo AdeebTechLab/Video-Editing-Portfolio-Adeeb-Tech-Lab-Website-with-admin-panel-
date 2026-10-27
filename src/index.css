@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+/*
+  Two areas share this app:
+  - The public portfolio (data-area="site") keeps its original stylesheet, src/styles/portfolio.css.
+  - The admin panel (data-area="admin") is built with Tailwind, like the web portfolio's admin.
+  index.html and the layouts set data-area on <html>. The last rule of the base layer below keeps
+  Tailwind's reset off the public pages, so the portfolio renders exactly as designed.
+*/
+
+/* Dark is the default admin theme. data-theme="light" switches it. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-page: var(--page);
+  --color-page-deep: var(--page-deep);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --color-on-accent: var(--on-accent);
+  --color-whatsapp: #25d366;
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-info-soft: var(--info-soft);
+  --color-info: var(--info);
+}
+
+/* Admin palette, taken from the video portfolio (near-black screens, orange accent) */
+:root[data-area="admin"],
+:root[data-area="admin"][data-theme="dark"] {
+  color-scheme: dark;
+  --page: #08090d;
+  --page-deep: #050608;
+  --surface: #101219;
+  --surface-2: #181b25;
+  --ink: #ffffff;
+  --ink-muted: rgba(255, 255, 255, 0.74);
+  --ink-faint: rgba(255, 255, 255, 0.54);
+  --line: rgba(255, 255, 255, 0.11);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --accent: #ff6a00;
+  --accent-deep: #d65900;
+  --accent-soft: rgba(255, 106, 0, 0.14);
+  --accent-text: #ff8a3d;
+  --on-accent: #08090d;
+  --danger: #ff7b72;
+  --danger-soft: rgba(255, 123, 114, 0.14);
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.14);
+  --info: #7cc4ff;
+  --info-soft: rgba(124, 196, 255, 0.14);
+  --dot: rgba(255, 255, 255, 0.045);
+  --glow: rgba(255, 106, 0, 0.09);
+  --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-area="admin"][data-theme="light"] {
+  color-scheme: light;
+  --page: #f5f5f7;
+  --page-deep: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eef0f3;
+  --ink: #08090d;
+  --ink-muted: rgba(8, 9, 13, 0.74);
+  --ink-faint: rgba(8, 9, 13, 0.56);
+  --line: rgba(8, 9, 13, 0.12);
+  --line-strong: rgba(8, 9, 13, 0.24);
+  --accent: #ff6a00;
+  --accent-deep: #d65900;
+  --accent-soft: rgba(255, 106, 0, 0.12);
+  --accent-text: #b34700;
+  --on-accent: #08090d;
+  --danger: #c2372c;
+  --danger-soft: rgba(194, 55, 44, 0.1);
+  --success: #157a3d;
+  --success-soft: rgba(21, 122, 61, 0.1);
+  --info: #1f6fb2;
+  --info-soft: rgba(31, 111, 178, 0.1);
+  --dot: rgba(8, 9, 13, 0.06);
+  --glow: rgba(255, 106, 0, 0.07);
+  --shadow: 0 18px 40px -20px rgba(8, 9, 13, 0.25);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: var(--page);
+    /* Dot grid + soft orange glow */
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0),
+      radial-gradient(ellipse 900px 560px at 12% -10%, var(--glow), transparent 60%),
+      radial-gradient(ellipse 1000px 700px at 50% 115%, var(--glow), transparent 65%);
+    background-size: 28px 28px, auto, auto;
+    background-attachment: scroll;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  h1, h2, h3, h4 {
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  img {
+    max-width: 100%;
+  }
+
+  /*
+    Public portfolio: undo Tailwind's reset and the admin base styles above, so every property that
+    src/styles/portfolio.css does not set keeps its browser default, as before Tailwind was added.
+    The portfolio stylesheet is not in a layer, so its own rules always win over this.
+  */
+  :root[data-area="site"],
+  :root[data-area="site"]::before,
+  :root[data-area="site"]::after,
+  :root[data-area="site"] *,
+  :root[data-area="site"] ::before,
+  :root[data-area="site"] ::after,
+  :root[data-area="site"] ::backdrop,
+  :root[data-area="site"] ::placeholder,
+  :root[data-area="site"] ::selection,
+  :root[data-area="site"] ::file-selector-button {
+    all: revert-layer;
+  }
+}
+
+/* Same for Tailwind utilities whose names match portfolio classes (for example sr-only). */
+@layer utilities {
+  :root[data-area="site"],
+  :root[data-area="site"] * {
+    all: revert-layer;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-x { padding-inline: 1.5rem; }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.6rem 1.15rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: background-color 0.18s, border-color 0.18s, color 0.18s, transform 0.18s;
+    cursor: pointer;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover:not(:disabled) { background: var(--accent-deep); }
+  .btn-outline { border: 1px solid var(--line-strong); color: var(--ink); background: transparent; }
+  .btn-outline:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-text); }
+  .btn-ghost { color: var(--ink-muted); background: transparent; }
+  .btn-ghost:hover:not(:disabled) { color: var(--ink); background: var(--surface-2); }
+  .btn-danger { background: var(--danger); color: #fff; }
+  .btn-danger:hover:not(:disabled) { filter: brightness(0.92); }
+  .btn-sm { min-height: 2.25rem; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 0.6rem; }
+  .btn-icon { min-height: 2.5rem; width: 2.5rem; padding: 0; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--surface-2);
+    color: var(--ink-muted);
+    border: 1px solid var(--line);
+  }
+  .chip-accent { background: var(--accent-soft); color: var(--accent-text); border-color: transparent; }
+
+  .field-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+  .field-hint { font-size: 0.78rem; color: var(--ink-faint); margin-top: 0.3rem; }
+  .input {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.7rem;
+    border: 1px solid var(--line-strong);
+    background: var(--page-deep);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input::placeholder { color: var(--ink-faint); }
+  .input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  textarea.input { min-height: 7rem; resize: vertical; line-height: 1.55; }
+  select.input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-faint) 50%), linear-gradient(135deg, var(--ink-faint) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 2.25rem; }
+  input[type="color"].input { padding: 0.3rem; cursor: pointer; }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-area="admin"] { scroll-behavior: auto; }
+  :root[data-area="admin"] * { transition-duration: 0.01ms !important; }
+}

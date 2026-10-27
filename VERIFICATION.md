@@ -1,25 +1,37 @@
 # Verification
 
-Verified on October 14, 2026 using the local desktop browser.
+Verified on October 26, 2026 after moving the portfolio to Vite + React + TypeScript + Tailwind CSS and adding the browser-based admin panel.
 
-- TypeScript type checking passed.
-- Next.js production static export passed after the narrow-screen and source organization fixes.
-- Type checking and production build also passed directly in `D:\Downloads\Video Editing Portfolio`.
-- The included production preview server returned HTTP 200 for the page and HTTP 206 for an MP4 byte-range request.
-- Dependency audit: zero known vulnerabilities after overriding PostCSS to a patched version.
-- All 12 main sections and the cinematic footer are present; all internal anchor destinations resolve.
-- Native MP4 player loaded an eight-second sample with `readyState: 4`, no media error, and playback changed to `paused: false` after pressing Play.
-- Video dialog opens and closes using Escape. It uses native modal focus containment, focus restoration and background scroll locking.
-- Short-Form Content filter changed the gallery from five entries to one; All Projects restores the collection.
-- Selecting Motion graphics changes the service preview.
-- Timeline range End key changes the preview to Spectrum; play/pause and the animated playhead are connected.
-- Before/after range ArrowRight changes the value from 50 to 51.
-- FAQ expands to reveal the corresponding answer.
-- Contact form with test input generates correct encoded email and WhatsApp drafts and explicitly says nothing has been sent. No external message was sent during testing. Native required/email/minimum-length validation is present.
-- Mobile menu opens, anchor selection closes it, and the browser URL changes to the correct section.
-- Layout checks at 1920, 1440, 1024, 768, 390 and 320 pixels. A 320px long-heading overflow was found and fixed. Final checks confirm no document overflow at all six widths.
-- No broken loaded images, missing anchor destinations or application console errors were found.
-- Desktop and mobile screenshots inspected; no client-work claims or fabricated statistics appear.
-- Reduced-motion behavior is implemented in CSS and timeline code. The connected browser does not expose OS media-preference emulation, so that preference was reviewed in source rather than toggled in the browser.
+## Build
 
-YouTube/Vimeo embed adapters are implemented but no verified company showreel on either provider was available to test. Their playback also depends on the provider allowing embedding. Native MP4 playback was tested live. No delivery backend, synthetic success state, formal accessibility certification, or Core Web Vitals score is claimed.
+- `npm ci` and `npm run build` (TypeScript project check + Vite production build) pass from a clean install. `npm audit` reports 0 vulnerabilities.
+- `npm run dev` serves the portfolio and `/admin` without console errors. `vite preview` serves deep links such as `/admin/projects` (single-page-app fallback; `vercel.json` and `public/_redirects` do the same when hosted).
+
+## Design unchanged
+
+The previous Next.js build and the new build were opened side by side in Chromium at 1440 × 900, 820 × 1180 and 390 × 844, with external requests blocked for both and reduced motion on. For each width, these states were compared: page loaded and scrolled through, a category filter selected, a service selected, FAQ opened + comparison slider moved + contact form prepared, mobile menu opened, and the video player opened.
+
+For every element (and its `::before`/`::after`), the tag, attributes, text, position, size and every computed CSS property were compared, plus full-page screenshots.
+
+- All elements, text and computed styles match, except the intended footer change: the © sign is now the hidden admin link (as on the web portfolio) and the separate “Admin” text link is gone.
+- Screenshots differ only in that footer line (plus a 1-pixel row at the edge of the blocked YouTube frame in one tablet capture, with identical computed styles).
+- The same comparison passes after opening the admin first and then returning to the portfolio without a page reload, and the admin login looks the same whether opened directly or from the footer link.
+- Remaining non-visual differences: the order of the `<head>` tags, a `#root` wrapper element, and an equivalent gradient value written differently by the new CSS minifier.
+
+## Admin panel
+
+An automated browser run covered:
+
+- `/admin` pages redirect to the login; a wrong password is refused; `info@adeebtechlab.com` / `tech123` signs in.
+- Dashboard counts (19 published videos, 7 categories, 9 services, 3 tools).
+- Video list search and preview player; adding a YouTube video with a new category (normalised link, automatic thumbnail, first position); duplicate links refused; Vimeo videos require a thumbnail.
+- The public site in another tab updates immediately: new category filter, new video first under All Projects, category hidden when its only video becomes a draft.
+- Categories: rename, duplicate names refused, reorder, delete with its videos moved to another category.
+- Services edit, tool hide/show, skills, site content (email) reflected on the public site.
+- Publish file download (valid `site-data.json` containing the changes), discard changes, import from file.
+- Light/dark theme; credential change, sign out and sign in with the new password.
+- Mobile (390 px): dashboard, menu, video list and editor without horizontal scrolling.
+- Missing video in the admin and unknown public URLs show friendly messages.
+- No console errors during the run.
+
+The Adeeb Technology Lab web portfolio, used as the reference, was only read: its archive checksum and all 76 extracted files were unchanged at the end.

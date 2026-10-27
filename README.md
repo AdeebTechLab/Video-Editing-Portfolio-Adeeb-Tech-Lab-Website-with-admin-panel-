@@ -1,78 +1,134 @@
-# Adeeb Technology Lab — cinematic video portfolio
+# Adeeb Technology Lab — Video Editing Portfolio
 
-A complete, single-page Next.js / React / TypeScript website. Local-only delivery; nothing has been published.
+Cinematic single-page video editing portfolio for Adeeb Tech Lab, built with **Vite, React, TypeScript and Tailwind CSS**, like the Adeeb Technology Lab web portfolio. It includes an in-browser admin panel and is a front-end-only project for static hosting such as Vercel. There is no server, database or API.
 
-## Run
+## Features
 
-Use Node.js 20.9 or newer. In the project directory:
+- One-page portfolio: hero, showreel, about, services, Selected Work, editing timeline, tools and skills, process, before/after comparison, why us, FAQ and contact.
+- Selected Work with category filters and an in-page video player for YouTube, Vimeo and MP4 videos.
+- Contact form that prepares an email or WhatsApp draft (nothing is sent by the site).
+- Mobile navigation, skip link, reduced-motion support, custom cursor on pointer devices.
+- Admin panel at `/admin` to manage videos, categories, thumbnails, services, editing tools, skills and site content, with publish and backup tools.
 
-```sh
+## Admin panel
+
+Open `/admin` or use the small **©** link in the footer. The first login is the same as on the web portfolio:
+
+| Field | Initial value |
+| --- | --- |
+| Email | `info@adeebtechlab.com` |
+| Password | `tech123` |
+
+After signing in, go to **Admin credentials** to change the email and password. A new password must be at least 8 characters. Updated credentials are saved in that browser; clearing the site's browser storage resets them to the initial values.
+
+> **Security note:** This is a static, front-end-only project. The initial login code is included in the public JavaScript, and browser-only checks can be bypassed by someone with technical access. The login is a convenience gate, not secure production authentication. Do not use it to protect confidential information.
+
+### Admin pages
+
+| Page | What it manages |
+| --- | --- |
+| Dashboard | Counts, recently updated videos, publishing status and browser storage |
+| Video projects | Add, edit, duplicate, delete, publish/draft, feature, reorder, preview and copy video links |
+| Categories | The Selected Work filters: add, rename, reorder, delete (videos move to another category) |
+| Services | The services list, with icon, label, description and preview picture |
+| Editing tools & skills | Tool cards (logo, colour, description, show/hide, order) and the skills list |
+| Site content | Company and contact details, logo, founder, social links, process, why us, FAQs, before & after pictures |
+| Publish & backup | Download the publish file, back up, import or discard browser changes |
+| Admin credentials | Change the admin email and password for this browser |
+
+Videos can be YouTube links (watch, Shorts, share or live links — the thumbnail is added automatically), Vimeo links, or MP4 files placed in `public/videos/` (linked as `/videos/file-name.mp4`). Vimeo and MP4 videos need a thumbnail image. The first video of each category is shown under **All Projects**; a category shows all its videos, featured ones first.
+
+Content edits are stored in the current browser. To publish them, use **Publish & backup › Download publish file**, replace `src/data/site-data.json` with the downloaded file, then commit and deploy the change. Uploaded images count toward browser storage (commonly about 5 MB); for larger images use links, or files in `public/images/` (linked as `/images/file-name.jpg`). See `docs/ADMIN-GUIDE.md` for step-by-step help.
+
+## Run locally
+
+Requires Node.js 20 or newer.
+
+```bash
 npm install
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. Run `npm run typecheck` and `npm run build` for verification. After building, `npm run start` runs the Next.js production server. The production build uses `.next/`; this app is not a static export.
+Open <http://localhost:5173>. The admin panel is at <http://localhost:5173/admin>.
 
-On Vercel, import this repository with its root directory (the folder containing `package.json`), using the Next.js preset. `vercel.json` explicitly sets the framework, build command, and `.next` output directory. Do not use `out/` or `public/` as the output directory. After pushing configuration changes, create a new deployment and confirm it is Ready and assigned to the production domain.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start Vite with live reload |
+| `npm run typecheck` | Run TypeScript checks |
+| `npm run build` | Type-check and build the production site in `dist/`; also refresh `public/robots.txt` (and the sitemap when `VITE_SITE_URL` is set) |
+| `npm run preview` | Preview the production build locally |
 
-Set `NEXT_PUBLIC_SITE_URL=https://your-final-domain.example` before building to enable the canonical URL and absolute Open Graph URLs. Leave it unset during local development; the official company website is not assumed to be the deployment URL of this portfolio. A local 1200 × 630 JPEG social preview is already included at `/images/social.jpg`.
+## GitHub and Vercel deployment
+
+1. Push this project folder to GitHub. The `.gitignore` excludes `node_modules`, build output, local environment files and deployment metadata.
+2. In Vercel, import the repository. `vercel.json` sets the Vite build, the `dist` output folder and the single-page-app rewrites, so `/admin` works on refresh. (`public/_redirects` does the same on Netlify.)
+3. Optionally set `VITE_SITE_URL` to the public address (see `.env.example`) to add the canonical link and `sitemap.xml`. Leave it empty until the final domain is known; the official company website is not assumed to be this portfolio's address.
+4. Add the custom domain in Vercel project settings if needed.
+
+The previous Next.js version stored admin data in Upstash Redis through API routes. That backend has been removed: no Redis connection or environment variables are needed any more, and the videos it held are included in `src/data/site-data.json`.
+
+## Project structure
+
+```text
+index.html                    Page title, link preview, fonts and the area/theme script
+src/main.tsx, src/App.tsx     App entry and routes (/ and /admin/…)
+src/data/site-data.json       Published content (videos, categories, services, tools, site content)
+src/store/                    Content loading and browser-side admin changes
+src/config/site.ts            Fixed settings: navigation, the sample films used by the timeline and footer
+src/styles/portfolio.css      The portfolio's design system, responsive layouts and reduced-motion rules
+src/index.css                 Tailwind setup and the admin panel theme
+src/components/layout/        Public header, footer and layout; admin logo
+src/components/sections/      Home page sections, including FAQ and contact
+src/components/admin/         Admin form controls, image inputs and video preview
+src/pages/                    Home and not-found pages
+src/pages/admin/              Admin login and management pages
+src/lib/adminAuth.ts          Browser-side admin login and credential handling
+scripts/sitemap.ts            robots.txt / sitemap generation during production builds
+docs/ADMIN-GUIDE.md           Admin usage guide
+```
+
+### How the styles fit together
+
+The public portfolio keeps its original hand-written stylesheet, `src/styles/portfolio.css`; the admin panel uses Tailwind, as on the web portfolio. `index.html` and the layouts mark `<html>` with `data-area="site"` or `data-area="admin"`:
+
+- Element rules in `portfolio.css` (for `body`, `header`, `h2`…) are limited to the public pages with `:where([data-area="site"])`, which adds no specificity, so the portfolio cascade is unchanged.
+- The last rule of Tailwind's base layer in `src/index.css` resets Tailwind's base styles on the public pages (`all: revert-layer`), so properties the portfolio does not set keep their browser defaults.
+
+Keep new public styles in `portfolio.css` and new admin styles as Tailwind classes.
 
 ## Edit the content
 
-`src/data/portfolio.ts` centralizes company contacts, founder image, logo, project data, categories, proposed services, tools, skills, process stages, FAQs, social links, and comparison images. `src/components/Portfolio.tsx` contains the page composition and editorial copy; `Contact.tsx`, `Timeline.tsx`, `VideoModal.tsx`, and `ui.tsx` separate the main reusable interactions. `src/app/globals.css` contains the design system, responsive layouts, and reduced-motion rules. SEO is in `src/app/layout.tsx`.
+Most content is edited in the admin panel and stored in `src/data/site-data.json`. Editorial copy (section headings, hero and about text) is in `src/components/sections/`. The five original motion samples used by the editing timeline and the footer film strip are in `src/config/site.ts`; their posters are in `public/images/`.
 
-### Replace demo films
+### Sample films and Selected Work
 
-All five current films are original, silent abstract motion studies generated for this website. They are explicitly labeled **Original sample**, not client projects or a genuine company showreel. The hero and featured showreel currently use the first project. Replace that first entry with an approved company reel when available.
+The five sample films are original, silent abstract motion studies, explicitly labelled **Original sample**, not client projects. Selected Work shows the videos managed in the admin panel. Mark a video as **Original sample** in the editor when it is a demonstration rather than client work; the card and player then say so.
 
-Each project supports `id`, `title`, `category`, `description`, `thumbnail`, `videoUrl`, `videoType`, `duration`, `featured`, and `isDemo`. Add or remove entries in `projects`; gallery filters are generated from `categories`.
-
-- MP4: put an approved H.264 MP4 in `public/videos/`, use `/videos/filename.mp4`, and set `videoType: 'mp4'`.
-- YouTube: use a normal watch URL, `youtu.be` URL, or embed URL; set `videoType: 'youtube'`.
-- Vimeo: use a numeric Vimeo video URL; set `videoType: 'vimeo'`. Private/restricted videos may need public embed permission.
-- Store poster assets in `public/images/` and use their `/images/...` path. Use consistent aspect ratios and optimized WebP/JPEG files.
-- Set `isDemo: false` only for genuine approved company work. Change all sample disclosure copy in the component when the collection becomes authentic. Change the source of the captions track for clips containing speech.
-- Duration is editable and never inferred. The current samples are eight seconds each.
-
-The comparison currently applies two different CSS color treatments to the **same original graphic**. It is explicitly a sample illustration. Replace both `comparison` paths with authentic matching before/after stills, remove the illustrative CSS filters in `.comparison .before` and `.comparison .after img`, and update the disclosure. Matching video comparison is not included because no authentic paired clips were available.
+The comparison applies two different CSS colour treatments to the **same original graphic**. It is explicitly a sample illustration. Replace both pictures in **Site content › Before & after** with authentic matching before/after stills, remove the illustrative CSS filters in `.comparison .before` and `.comparison .after img`, and update the disclosure text in `src/components/sections/HomeSections.tsx`.
 
 ## Contact behavior
 
-The form validates the name, email, format and description, then prepares a draft with all fields. The visitor chooses **Open email draft**, **Open WhatsApp draft**, or **Copy inquiry text**. No request is sent to a backend, no message is automatically sent, and there is no simulated success confirmation. A hidden honeypot rejects basic automated input. Native field validation reports invalid/missing inputs. The brief's loading state is represented while the local draft is prepared; there is no network submission to wait for. Real delivery needs a separate server/provider integration and credentials.
+The form validates the name, email, format and description, then prepares a draft with all fields. The visitor chooses **Open email draft**, **Open WhatsApp draft**, or **Copy inquiry text**. No request is sent to a backend, no message is automatically sent, and there is no simulated success confirmation. A hidden honeypot rejects basic automated input. Real delivery needs a separate provider integration and credentials.
 
 ## Verified content and assets
 
 Research date: October 14, 2026 (Asia/Karachi).
 
 - https://adeebtechlab.com/ confirms the name and links to the company website and founder portfolio.
-- https://adeeb-technology-lab-website.vercel.app/ confirms video editing and graphic design offerings, Salman Adeeb as CEO/video editor, `info.AdeebTechLab@gmail.com`, `+92 3092333121`, and Bahawalpur/Islamabad presence. The selected inquiry number is listed as Islamabad in the contact section and as the main number in the footer. Bahawalpur is a verified company location; this site does not label the selected number a Bahawalpur branch number.
+- https://adeeb-technology-lab-website.vercel.app/ confirms video editing and graphic design offerings, Salman Adeeb as CEO/video editor, `info.AdeebTechLab@gmail.com`, `+92 3092333121`, and Bahawalpur/Islamabad presence.
 - https://portfolio-website-single-page-3-d.vercel.app/ confirms Premiere Pro CC, CapCut, Camtasia Studio, Filmora, green screen work, and video/animation experience. No skill percentages, credentials or employment dates were carried into this portfolio.
-- CEO is verified; the founder wording comes from the supplied user brief, not a separate explicit founder statement found in these pages.
-- Company social links were extracted from the official company site's footer: Instagram, LinkedIn, Facebook, TikTok and YouTube. Account content and platform verification badges are not independently certified.
-- `public/images/logo.png` was downloaded from the Cloudinary logo linked by the official company site: https://res.cloudinary.com/adeeb-tech-lab/image/upload/v1757196590/Company%20Logo/512_exyyiy.png
-- `public/images/founder.png` was downloaded from the founder portfolio's own image: https://portfolio-website-single-page-3-d.vercel.app/assets/salman2.png
-- Original SVG art and generated MP4s are supplied with this project. No third-party commercial stock footage, customer logos, invented testimonials or project statistics are used. The official sites contain educational video links, but these were not represented as an editing showreel or completed client work.
+- Company social links were extracted from the official company site's footer: Instagram, LinkedIn, Facebook, TikTok and YouTube.
+- `public/images/logo.png` was downloaded from the Cloudinary logo linked by the official company site.
+- No third-party commercial stock footage, customer logos, invented testimonials or project statistics are used.
 
-Video editing is verified as a broad offering. The more specific service formats are marked as proposed scopes to discuss. Additional software such as After Effects and DaVinci Resolve was not claimed as a verified skill.
+Video editing is verified as a broad offering. The more specific service formats are marked as proposed scopes to discuss.
 
 ## Accessibility and performance
 
-Semantic sections, skip link, labeled inputs, native details accordions and range sliders, visible focus, native video controls, captions for the silent demo, dialog focus containment/Escape close/focus restoration, mobile navigation, and reduced-motion support are included. Only the opened film loads as a video; gallery images are lazy loaded. Custom cursor is a nonblocking supplementary indicator on pointer devices and is disabled on touch/reduced motion. Google Fonts has a system-font fallback. No autoplay with sound, analytics or visitor-data storage.
+Semantic sections, skip link, labelled inputs, native details accordions and range sliders, visible focus, native video controls, captions for the silent demo, dialog focus containment/Escape close/focus restoration, mobile navigation, and reduced-motion support are included. Only the opened film loads as a video; gallery images are lazy loaded. The admin panel loads only when `/admin` is opened. No autoplay with sound, analytics or visitor-data storage on the public site.
 
-Before production: replace samples with approved portfolio media, confirm proposed service scopes, choose a canonical domain, and confirm continuing permission to use the supplied company assets.
+## Before publishing
 
-## Admin panel
-
-Open `/admin` to manage YouTube portfolio videos. Add a link, title, description and category; preview before publishing. Added videos appear in Selected Work, can be edited or removed, and are saved in `data/projects.json`. YouTube videos must permit embedding; the player also provides a YouTube link.
-
-The admin password is stored as a salted hash in `data/admin.json`. Keep the `data` folder private and backed up. Initial password setup is available only through localhost. The folder is excluded from Git.
-
-This portfolio now requires a running Node.js server (`npm run build`, then `npm start`) and writable persistent storage for `data`. A static-only upload does not support the admin panel. Multiple server instances require shared storage and authentication.
-
-## Vercel admin storage and restoring existing videos
-
-Connect Upstash Redis from Vercel Marketplace to this project. Ensure Production has `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (the `KV_REST_API_URL` / `KV_REST_API_TOKEN` aliases are also supported). Redeploy after connecting.
-
-To restore the existing local admin password and videos, put the same Redis URL and token in a local `.env.local` file, then run `npm run migrate:redis` using Node.js 22 or newer from this project directory. This imports `data/admin.json` and `data/projects.json` together without overwriting existing Redis data. The local files remain intact. Sign in with your existing password afterward; no public password setup is enabled.
-
-Never commit `.env.local` or `data/admin.json`. On Vercel, admin and project data use Redis rather than the deployment filesystem. Without a connected database, the hosted admin explains the missing configuration. Local development without Redis continues to use the local data folder.
+- Add the link-preview image `public/images/social.jpg` (1200 × 630). `index.html` refers to it, but the file is not in the project yet.
+- Replace samples with approved portfolio media, confirm proposed service scopes, and confirm continuing permission to use the supplied company assets.
+- Change the initial admin credentials for your browser.
