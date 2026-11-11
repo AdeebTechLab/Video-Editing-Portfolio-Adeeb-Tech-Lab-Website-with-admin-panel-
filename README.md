@@ -1,4 +1,4 @@
-# Adeeb Technology Lab — Video Editing Portfolio
+jq# Adeeb Technology Lab — Video Editing Portfolio
 
 Cinematic single-page video editing portfolio for Adeeb Tech Lab, built with **Vite, React, TypeScript and Tailwind CSS**, like the Adeeb Technology Lab web portfolio. It includes an in-browser admin panel and is a front-end-only project for static hosting such as Vercel. There is no server, database or API.
 
@@ -14,10 +14,10 @@ Cinematic single-page video editing portfolio for Adeeb Tech Lab, built with **V
 
 Open `/admin` or use the small **©** link in the footer. The first login is the same as on the web portfolio:
 
-| Field | Initial value |
-| --- | --- |
-| Email | `info@adeebtechlab.com` |
-| Password | `tech123` |
+| Field    | Initial value           |
+| -------- | ----------------------- |
+| Email    | `info@adeebtechlab.com` |
+| Password | `tech123`               |
 
 After signing in, go to **Admin credentials** to change the email and password. A new password must be at least 8 characters. Updated credentials are saved in that browser; clearing the site's browser storage resets them to the initial values.
 
@@ -25,16 +25,16 @@ After signing in, go to **Admin credentials** to change the email and password. 
 
 ### Admin pages
 
-| Page | What it manages |
-| --- | --- |
-| Dashboard | Counts, recently updated videos, publishing status and browser storage |
-| Video projects | Add, edit, duplicate, delete, publish/draft, feature, reorder, preview and copy video links |
-| Categories | The Selected Work filters: add, rename, reorder, delete (videos move to another category) |
-| Services | The services list, with icon, label, description and preview picture |
-| Editing tools & skills | Tool cards (logo, colour, description, show/hide, order) and the skills list |
-| Site content | Company and contact details, logo, founder, social links, process, why us, FAQs, before & after pictures |
-| Publish & backup | Download the publish file, back up, import or discard browser changes |
-| Admin credentials | Change the admin email and password for this browser |
+| Page                   | What it manages                                                                                          |
+| ---------------------- | -------------------------------------------------------------------------------------------------------- |
+| Dashboard              | Counts, recently updated videos, publishing status and browser storage                                   |
+| Video projects         | Add, edit, duplicate, delete, publish/draft, feature, reorder, preview and copy video links              |
+| Categories             | The Selected Work filters: add, rename, reorder, delete (videos move to another category)                |
+| Services               | The services list, with icon, label, description and preview picture                                     |
+| Editing tools & skills | Tool cards (logo, colour, description, show/hide, order) and the skills list                             |
+| Site content           | Company and contact details, logo, founder, social links, process, why us, FAQs, before & after pictures |
+| Publish & backup       | Download the publish file, back up, import or discard browser changes                                    |
+| Admin credentials      | Change the admin email and password for this browser                                                     |
 
 Videos can be YouTube links (watch, Shorts, share or live links — the thumbnail is added automatically), Vimeo links, or MP4 files placed in `public/videos/` (linked as `/videos/file-name.mp4`). Vimeo and MP4 videos need a thumbnail image. The first video of each category is shown under **All Projects**; a category shows all its videos, featured ones first.
 
@@ -51,12 +51,12 @@ npm run dev
 
 Open <http://localhost:5173>. The admin panel is at <http://localhost:5173/admin>.
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start Vite with live reload |
-| `npm run typecheck` | Run TypeScript checks |
-| `npm run build` | Type-check and build the production site in `dist/`; also refresh `public/robots.txt` (and the sitemap when `VITE_SITE_URL` is set) |
-| `npm run preview` | Preview the production build locally |
+| Command             | Purpose                                                                                                                             |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`       | Start Vite with live reload                                                                                                         |
+| `npm run typecheck` | Run TypeScript checks                                                                                                               |
+| `npm run build`     | Type-check and build the production site in `dist/`; also refresh `public/robots.txt` (and the sitemap when `VITE_SITE_URL` is set) |
+| `npm run preview`   | Preview the production build locally                                                                                                |
 
 ## GitHub and Vercel deployment
 

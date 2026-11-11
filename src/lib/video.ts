@@ -18,6 +18,17 @@ export function youtubeThumbnail(id: string) {
   return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
 }
 
+const AUTO_THUMBNAIL = /^https?:\/\/(?:i\.ytimg\.com|img\.youtube\.com)\/vi\/([A-Za-z0-9_-]{11})\/(?:default|mqdefault|hqdefault|sddefault)\.jpg$/
+
+/**
+ * The full-HD (1280×720, 16:9) version of an automatic YouTube thumbnail, or null for any other image.
+ * Stored thumbnails stay at hqdefault (480×360 with black bars), which every video has; this is the sharper picture to try first.
+ */
+export function youtubeHdThumbnail(thumbnail: string): string | null {
+  const id = AUTO_THUMBNAIL.exec(thumbnail.trim())?.[1]
+  return id ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg` : null
+}
+
 export type ParsedVideo = { ok: true; type: VideoType; url: string; thumbnail: string } | { ok: false; error: string }
 
 /**

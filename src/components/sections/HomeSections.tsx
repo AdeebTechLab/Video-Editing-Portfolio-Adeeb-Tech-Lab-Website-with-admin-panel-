@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import { ArrowUpRight, ArrowDown, Play, ChevronRight } from 'lucide-react'
 import { useContent } from '../../hooks/useContent'
+import { useUnavailableVideos } from '../../hooks/useUnavailableVideos'
 import type { Video } from '../../lib/types'
 import { usePlayVideo } from '../layout/VideoPlayerContext'
 import { Heading } from '../ui'
 import Timeline from '../Timeline'
 import ServiceArtwork from '../ServiceArtwork'
+import { HdThumbnail } from '../HdThumbnail'
 import { ServiceIcon } from '../ServiceIcon'
 
 /** Item number: 01, 02 … 10 */
@@ -201,8 +203,10 @@ export function WorkSection() {
   const { videos, featuredFirst, categories, categoryById } = useContent()
   const play = usePlayVideo()
   const [filter, setFilter] = useState(ALL.id)
+  // YouTube videos that were deleted or made private are hidden, so the next video of their category shows instead.
+  const unavailable = useUnavailableVideos(videos)
   // Only videos in an existing category are listed; categories without videos are hidden.
-  const listed = videos.filter((v) => categoryById.has(v.categoryId))
+  const listed = videos.filter((v) => categoryById.has(v.categoryId) && !unavailable.has(v.id))
   const categoryOptions = [ALL, ...categories.filter((c) => listed.some((v) => v.categoryId === c.id))]
   const currentFilter = categoryOptions.some((c) => c.id === filter) ? filter : ALL.id
   const categoryName = (video: Video) => categoryById.get(video.categoryId)?.name ?? ''
@@ -211,7 +215,10 @@ export function WorkSection() {
   for (const project of listed) {
     if (!latestByCategory.has(project.categoryId)) latestByCategory.set(project.categoryId, project)
   }
-  const visibleProjects = currentFilter === ALL.id ? [...latestByCategory.values()] : featuredFirst.filter((project) => project.categoryId === currentFilter)
+  const visibleProjects =
+    currentFilter === ALL.id
+      ? [...latestByCategory.values()]
+      : featuredFirst.filter((project) => project.categoryId === currentFilter && !unavailable.has(project.id))
   return (
     <section id="work" className="section work">
       <div className="heading-split">
@@ -237,7 +244,7 @@ export function WorkSection() {
         {visibleProjects.map((p, i) => (
           <button key={p.id} className={`project ${i === 0 ? 'featured' : ''}`} data-cursor="VIEW" onClick={() => play(p)} aria-label={`Play ${p.title}`}>
             <div className="project-image">
-              <img src={p.thumbnail} alt={`${p.title} video thumbnail`} loading="lazy" />
+              <HdThumbnail src={p.thumbnail} alt={`${p.title} video thumbnail`} loading="lazy" />
               <span className="sample-tag">{sourceLabel(p)}</span>
               <span className="project-play">
                 <Play size={21} fill="currentColor" />
