@@ -2,7 +2,7 @@ jq# Adeeb Technology Lab — Video Editing Portfolio
 
 Cinematic single-page video editing portfolio for Adeeb Tech Lab, built with **Vite, React, TypeScript and Tailwind CSS**, like the Adeeb Technology Lab web portfolio. It includes an in-browser admin panel and is a front-end-only project for static hosting such as Vercel. There is no server, database or API.
 
-## Features
+## Feature
 
 - One-page portfolio: hero, showreel, about, services, Selected Work, editing timeline, tools and skills, process, before/after comparison, why us, FAQ and contact.
 - Selected Work with category filters and an in-page video player for YouTube, Vimeo and MP4 videos.
