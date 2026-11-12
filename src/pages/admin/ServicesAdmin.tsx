@@ -129,7 +129,7 @@ function ServiceDialog({ service, nextOrder, onClose }: { service: Service | nul
             </select>
           </div>
         </Field>
-        <Field label="Preview picture" hint="Shown when the service is selected, about 3:2. Without one, an illustrated editing panel is shown.">
+        <Field label="Preview picture" hint="Shown at the top of the service card; a 16:9 picture works best. Without one, the service icon is shown.">
           <WideImageInput value={image} onChange={setImage} aspect="aspect-[3/2]" label="picture" />
         </Field>
         {image && (

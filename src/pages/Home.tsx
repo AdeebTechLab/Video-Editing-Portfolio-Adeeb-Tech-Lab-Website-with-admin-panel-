@@ -8,10 +8,8 @@ import {
   ProcessSection,
   ServicesSection,
   ShowreelSection,
-  Ticker,
   TimelineSection,
   ToolsSection,
-  WhySection,
   WorkSection,
 } from '../components/sections/HomeSections'
 
@@ -20,16 +18,14 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Ticker />
       <ShowreelSection />
-      <AboutSection />
       <ServicesSection />
       <WorkSection />
       <TimelineSection />
       <ToolsSection />
       <ProcessSection />
       <ComparisonSection />
-      <WhySection />
+      <AboutSection />
       <FaqSection />
       <ContactSection />
     </>

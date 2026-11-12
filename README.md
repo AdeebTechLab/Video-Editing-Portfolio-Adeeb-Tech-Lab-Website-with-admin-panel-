@@ -4,7 +4,7 @@ Cinematic single-page video editing portfolio for Adeeb Tech Lab, built with **V
 
 ## Feature
 
-- One-page portfolio: hero, showreel, about, services, Selected Work, editing timeline, tools and skills, process, before/after comparison, why us, FAQ and contact.
+- One-page portfolio: hero, showreel, about, services, Selected Work, editing timeline, tools and skills, process, before/after comparison, about (with the why-us points), FAQ and contact. The design matches the Adeeb Tech Lab app development portfolio, with a light/dark theme switch.
 - Selected Work with category filters and an in-page video player for YouTube, Vimeo and MP4 videos.
 - Contact form that prepares an email or WhatsApp draft (nothing is sent by the site).
 - Mobile navigation, skip link, reduced-motion support, custom cursor on pointer devices.
@@ -104,7 +104,7 @@ Most content is edited in the admin panel and stored in `src/data/site-data.json
 
 The five sample films are original, silent abstract motion studies, explicitly labelled **Original sample**, not client projects. Selected Work shows the videos managed in the admin panel. Mark a video as **Original sample** in the editor when it is a demonstration rather than client work; the card and player then say so.
 
-The comparison applies two different CSS colour treatments to the **same original graphic**. It is explicitly a sample illustration. Replace both pictures in **Site content › Before & after** with authentic matching before/after stills, remove the illustrative CSS filters in `.comparison .before` and `.comparison .after img`, and update the disclosure text in `src/components/sections/HomeSections.tsx`.
+While both sides of the comparison use the **same original graphic**, the website applies two CSS colour treatments to it and says it is a sample illustration. Replace both pictures in **Site content › Before & after** with authentic matching before/after stills, and the filters and the disclosure are removed automatically.
 
 ## Contact behavior
 

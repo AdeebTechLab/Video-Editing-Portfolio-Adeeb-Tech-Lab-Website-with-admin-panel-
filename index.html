@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-area="site">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,21 +19,18 @@
     <meta name="twitter:description" content="Video Editing &amp; Creative Production" />
     <meta name="twitter:image" content="/images/social.jpg" />
 
+    <meta name="theme-color" content="#222D38" />
     <link rel="icon" href="/images/logo.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!--
-      Before the page paints: mark whether this is the public portfolio or the admin panel (each has its own
-      styles, see src/index.css), and apply the admin panel's saved light/dark choice so there is no flash.
-    -->
+    <!-- Apply the saved light/dark choice before the page paints, so there is no flash. -->
     <script>
       try {
-        document.documentElement.setAttribute('data-area', /^\/admin(\/|$)/.test(location.pathname) ? 'admin' : 'site');
         var t = localStorage.getItem('atl-video-theme');
-        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
       } catch (e) {}
     </script>
 

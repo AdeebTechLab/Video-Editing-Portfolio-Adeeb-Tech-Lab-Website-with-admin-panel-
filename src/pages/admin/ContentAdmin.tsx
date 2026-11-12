@@ -198,7 +198,7 @@ export default function ContentAdmin() {
           </button>
         </Panel>
 
-        <Panel id="c-values" title="Why us" description="The points in “Built for stories that stand out”.">
+        <Panel id="c-values" title="Why us" description="The “Why work with us” points in the About section.">
           <ol className="space-y-2">
             {form.values.map((v, i) => (
               <NumberedRow
@@ -216,7 +216,7 @@ export default function ContentAdmin() {
           </button>
         </Panel>
 
-        <Panel id="c-faqs" title="FAQs" description="The questions in “Good questions”.">
+        <Panel id="c-faqs" title="FAQs" description="The questions in “Frequently asked questions”.">
           <ol className="space-y-3">
             {form.faqs.map((f, i) => (
               <NumberedRow

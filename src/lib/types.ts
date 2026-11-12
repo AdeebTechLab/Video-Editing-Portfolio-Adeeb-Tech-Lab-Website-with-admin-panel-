@@ -34,11 +34,11 @@ export interface Service {
   id: string
   name: string
   description: string
-  /** Small label above the title in the preview, for example “Discuss your brief”. */
+  /** Small label above the title on the card, for example “Discuss your brief”. */
   label: string
   /** Icon key from src/components/ServiceIcon.tsx */
   icon: string
-  /** Preview image. Without one, an illustrated editing panel is shown. */
+  /** Card picture (16:9). Without one, the service icon is shown. */
   image: string
   imageAlt: string
   order: number

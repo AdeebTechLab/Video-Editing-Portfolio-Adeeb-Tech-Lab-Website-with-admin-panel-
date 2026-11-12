@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, NavLink, Outlet, useLocation, useNavigate } from 'react-router'
 import { Clapperboard, ExternalLink, FileText, LayoutDashboard, Layers, LogOut, Menu, Settings, Tags, UploadCloud, Wrench, X } from 'lucide-react'
-import { useArea } from '../../hooks/useArea'
 import { useSeo } from '../../lib/seo'
 import { cn } from '../../lib/utils'
 import { differsFromPublished, useHasLocalChanges, useSite } from '../../store/siteStore'
@@ -21,7 +20,6 @@ const NAV = [
 ]
 
 export default function AdminLayout() {
-  useArea('admin')
   useSeo({ title: 'Admin', noindex: true })
   const location = useLocation()
   const [open, setOpen] = useState(false)

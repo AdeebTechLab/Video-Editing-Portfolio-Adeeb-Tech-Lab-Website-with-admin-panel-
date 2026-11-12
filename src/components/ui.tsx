@@ -1,18 +1,24 @@
-import { Play } from 'lucide-react'
-export function Heading({ number, kicker, children }: { number: string; kicker: string; children: React.ReactNode }) {
+import type { ReactNode } from 'react'
+import { Link } from 'react-router'
+
+/** Section title with an optional intro line and an optional item on the right (for example a button). */
+export function SectionHeading({ title, text, aside }: { title: string; text?: ReactNode; aside?: ReactNode }) {
   return (
-    <div className="section-heading reveal">
-      <p className="eyebrow">
-        <span>{number} /</span> {kicker}
-      </p>
-      <h2>{children}</h2>
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div className="max-w-2xl">
+        <h2 className="text-3xl font-extrabold text-ink sm:text-4xl">{title}</h2>
+        {text && <p className="mt-3 text-ink-muted">{text}</p>}
+      </div>
+      {aside}
     </div>
   )
 }
-export function PlayButton({ onClick, label = 'Play sample film' }: { onClick: () => void; label?: string }) {
+
+/** A link to a section of the home page that also works from other pages (for example the 404 page). */
+export function SectionLink({ section, className, children, onClick }: { section: string; className?: string; children: ReactNode; onClick?: () => void }) {
   return (
-    <button className="play" aria-label={label} onClick={onClick}>
-      <Play size={24} fill="currentColor" />
-    </button>
+    <Link to="/" state={{ scrollTo: section }} className={className} onClick={onClick}>
+      {children}
+    </Link>
   )
 }

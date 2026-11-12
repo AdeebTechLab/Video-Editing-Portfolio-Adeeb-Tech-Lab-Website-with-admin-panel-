@@ -1,18 +1,13 @@
 @import "tailwindcss";
 
 /*
-  Two areas share this app:
-  - The public portfolio (data-area="site") keeps its original stylesheet, src/styles/portfolio.css.
-  - The admin panel (data-area="admin") is built with Tailwind, like the web portfolio's admin.
-  index.html and the layouts set data-area on <html>. The last rule of the base layer below keeps
-  Tailwind's reset off the public pages, so the portfolio renders exactly as designed.
+  One theme for the public portfolio and the admin panel, matching the Adeeb Tech Lab
+  app development portfolio and adeebtechlab.com. Dark is the default; data-theme="light" switches it.
 */
-
-/* Dark is the default admin theme. data-theme="light" switches it. */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --color-page: var(--page);
   --color-page-deep: var(--page-deep);
@@ -37,60 +32,60 @@
   --color-info: var(--info);
 }
 
-/* Admin palette, taken from the video portfolio (near-black screens, orange accent) */
-:root[data-area="admin"],
-:root[data-area="admin"][data-theme="dark"] {
+/* Brand palette from adeebtechlab.com */
+:root,
+:root[data-theme="dark"] {
   color-scheme: dark;
-  --page: #08090d;
-  --page-deep: #050608;
-  --surface: #101219;
-  --surface-2: #181b25;
+  --page: #222d38;
+  --page-deep: #1a232c;
+  --surface: #2b3743;
+  --surface-2: #334150;
   --ink: #ffffff;
   --ink-muted: rgba(255, 255, 255, 0.74);
   --ink-faint: rgba(255, 255, 255, 0.54);
-  --line: rgba(255, 255, 255, 0.11);
+  --line: rgba(255, 255, 255, 0.12);
   --line-strong: rgba(255, 255, 255, 0.22);
-  --accent: #ff6a00;
-  --accent-deep: #d65900;
-  --accent-soft: rgba(255, 106, 0, 0.14);
-  --accent-text: #ff8a3d;
-  --on-accent: #08090d;
+  --accent: #ff8e01;
+  --accent-deep: #cc7101;
+  --accent-soft: rgba(255, 142, 1, 0.13);
+  --accent-text: #ffa53a;
+  --on-accent: #1a232c;
   --danger: #ff7b72;
   --danger-soft: rgba(255, 123, 114, 0.14);
   --success: #4ade80;
   --success-soft: rgba(74, 222, 128, 0.14);
   --info: #7cc4ff;
   --info-soft: rgba(124, 196, 255, 0.14);
-  --dot: rgba(255, 255, 255, 0.045);
-  --glow: rgba(255, 106, 0, 0.09);
-  --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+  --dot: rgba(255, 255, 255, 0.05);
+  --glow: rgba(255, 142, 1, 0.1);
+  --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.55);
 }
 
-:root[data-area="admin"][data-theme="light"] {
+:root[data-theme="light"] {
   color-scheme: light;
-  --page: #f5f5f7;
+  --page: #f4f6f8;
   --page-deep: #ffffff;
   --surface: #ffffff;
-  --surface-2: #eef0f3;
-  --ink: #08090d;
-  --ink-muted: rgba(8, 9, 13, 0.74);
-  --ink-faint: rgba(8, 9, 13, 0.56);
-  --line: rgba(8, 9, 13, 0.12);
-  --line-strong: rgba(8, 9, 13, 0.24);
-  --accent: #ff6a00;
-  --accent-deep: #d65900;
-  --accent-soft: rgba(255, 106, 0, 0.12);
-  --accent-text: #b34700;
-  --on-accent: #08090d;
+  --surface-2: #eef1f4;
+  --ink: #222d38;
+  --ink-muted: rgba(34, 45, 56, 0.76);
+  --ink-faint: rgba(34, 45, 56, 0.56);
+  --line: rgba(34, 45, 56, 0.12);
+  --line-strong: rgba(34, 45, 56, 0.24);
+  --accent: #ff8e01;
+  --accent-deep: #cc7101;
+  --accent-soft: rgba(255, 142, 1, 0.12);
+  --accent-text: #a35700;
+  --on-accent: #1a232c;
   --danger: #c2372c;
   --danger-soft: rgba(194, 55, 44, 0.1);
   --success: #157a3d;
   --success-soft: rgba(21, 122, 61, 0.1);
   --info: #1f6fb2;
   --info-soft: rgba(31, 111, 178, 0.1);
-  --dot: rgba(8, 9, 13, 0.06);
-  --glow: rgba(255, 106, 0, 0.07);
-  --shadow: 0 18px 40px -20px rgba(8, 9, 13, 0.25);
+  --dot: rgba(34, 45, 56, 0.06);
+  --glow: rgba(255, 142, 1, 0.08);
+  --shadow: 0 18px 40px -20px rgba(34, 45, 56, 0.25);
 }
 
 @layer base {
@@ -106,7 +101,7 @@
     line-height: 1.6;
     overflow-x: hidden;
     background-color: var(--page);
-    /* Dot grid + soft orange glow */
+    /* Dot grid + soft orange glow, as on adeebtechlab.com */
     background-image:
       radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0),
       radial-gradient(ellipse 900px 560px at 12% -10%, var(--glow), transparent 60%),
@@ -130,32 +125,6 @@
   }
   img {
     max-width: 100%;
-  }
-
-  /*
-    Public portfolio: undo Tailwind's reset and the admin base styles above, so every property that
-    src/styles/portfolio.css does not set keeps its browser default, as before Tailwind was added.
-    The portfolio stylesheet is not in a layer, so its own rules always win over this.
-  */
-  :root[data-area="site"],
-  :root[data-area="site"]::before,
-  :root[data-area="site"]::after,
-  :root[data-area="site"] *,
-  :root[data-area="site"] ::before,
-  :root[data-area="site"] ::after,
-  :root[data-area="site"] ::backdrop,
-  :root[data-area="site"] ::placeholder,
-  :root[data-area="site"] ::selection,
-  :root[data-area="site"] ::file-selector-button {
-    all: revert-layer;
-  }
-}
-
-/* Same for Tailwind utilities whose names match portfolio classes (for example sr-only). */
-@layer utilities {
-  :root[data-area="site"],
-  :root[data-area="site"] * {
-    all: revert-layer;
   }
 }
 
@@ -193,6 +162,8 @@
   .btn-outline:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-text); }
   .btn-ghost { color: var(--ink-muted); background: transparent; }
   .btn-ghost:hover:not(:disabled) { color: var(--ink); background: var(--surface-2); }
+  .btn-whatsapp { background: #25d366; color: #0b2e18; }
+  .btn-whatsapp:hover:not(:disabled) { background: #1fb457; }
   .btn-danger { background: var(--danger); color: #fff; }
   .btn-danger:hover:not(:disabled) { filter: brightness(0.92); }
   .btn-sm { min-height: 2.25rem; padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 0.6rem; }
@@ -243,12 +214,69 @@
   textarea.input { min-height: 7rem; resize: vertical; line-height: 1.55; }
   select.input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-faint) 50%), linear-gradient(135deg, var(--ink-faint) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 2.25rem; }
   input[type="color"].input { padding: 0.3rem; cursor: pointer; }
+
+  .prose-body p + p { margin-top: 0.9rem; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-rise > * {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-rise > *:nth-child(2) { animation-delay: 0.08s; }
+.hero-rise > *:nth-child(3) { animation-delay: 0.16s; }
+.hero-rise > *:nth-child(4) { animation-delay: 0.24s; }
+.hero-rise > *:nth-child(5) { animation-delay: 0.32s; }
+
+@keyframes caret { 50% { opacity: 0; } }
+.type-caret { animation: caret 1s steps(1) infinite; }
+
+@keyframes ring {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.wa-ring { animation: ring 2.4s ease-out infinite; }
+
+/* Slow float for the hero picture */
+@keyframes float {
+  50% { transform: translateY(-10px); }
+}
+.hero-float { animation: float 6s ease-in-out infinite; }
+
+/* Audio waveform bars in the editing timeline */
+@keyframes wave {
+  50% { transform: scaleY(0.45); }
+}
+.wave-bar { animation: wave 1.4s ease-in-out infinite; transform-origin: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .wa-ring, .type-caret, .hero-rise > *, .hero-float, .wave-bar { animation: none !important; }
+  * { transition-duration: 0.01ms !important; }
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
-@media (prefers-reduced-motion: reduce) {
-  :root[data-area="admin"] { scroll-behavior: auto; }
-  :root[data-area="admin"] * { transition-duration: 0.01ms !important; }
+@media print {
+  :root, :root[data-theme="dark"], :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #fff;
+    --page-deep: #fff;
+    --surface: #fff;
+    --surface-2: #f2f2f2;
+    --ink: #111;
+    --ink-muted: #333;
+    --ink-faint: #555;
+    --line: #ccc;
+    --line-strong: #999;
+  }
+  body { color: #111; background: #fff !important; background-image: none !important; font-size: 11pt; }
+  .site-header, .site-footer, .fixed, button, .wa-ring { display: none !important; }
+  a { color: inherit; text-decoration: underline; }
+  .card { break-inside: avoid; box-shadow: none !important; }
+  section, article, figure { break-inside: avoid-page; }
+  details:not([open]) > *:not(summary) { display: block !important; }
 }

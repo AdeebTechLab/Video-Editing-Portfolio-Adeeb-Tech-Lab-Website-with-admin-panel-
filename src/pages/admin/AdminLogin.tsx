@@ -2,12 +2,10 @@ import { useState, type FormEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { Eye, EyeOff, LockKeyhole } from 'lucide-react'
 import { Logo } from '../../components/layout/Logo'
-import { useArea } from '../../hooks/useArea'
 import { useSeo } from '../../lib/seo'
 import { currentAdminEmail, startAdminSession, verifyAdminCredentials } from '../../lib/adminAuth'
 
 export default function AdminLogin() {
-  useArea('admin')
   useSeo({ title: 'Admin login', noindex: true })
   const navigate = useNavigate()
   const location = useLocation()
